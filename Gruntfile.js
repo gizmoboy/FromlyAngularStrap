@@ -8,7 +8,7 @@ module.exports = function(grunt) {
 		formlyConfig: {
 			hostname: 'localhost', // change to 0.0.0.0 to listen on all connections
 			demo: 'demo',
-			port: 4000,
+			port: 3000,
 			livereloadport: 35701
 		},
 		connect: {

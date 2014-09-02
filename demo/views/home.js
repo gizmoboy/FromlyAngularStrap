@@ -78,7 +78,8 @@ app.controller('home', function($scope, $parse, $window, usingCustomTypeTemplate
 		placeholder: 'Doe'
 	}, {
 		key: 'emailRequired',
-		type: 'checkbox',
+		type: 'buttongroup',
+		selectType: 'multiple',
 		label: 'Email required',
 		description: 'Do you really want us to have your email?'
 	}, {	
@@ -95,7 +96,8 @@ app.controller('home', function($scope, $parse, $window, usingCustomTypeTemplate
 		lines: 4
 	}, {
 		key: 'triedEmber',
-		type: 'radio',
+		type: 'buttongroup',
+		selectType: 'single',
 		label: 'Have you tried EmberJs yet?',
 		options: [
 			{
@@ -206,7 +208,8 @@ app.controller('home', function($scope, $parse, $window, usingCustomTypeTemplate
 		}
 	}, {
 		key: 'checkThis',
-		type: 'checkbox',
+		type: 'buttongroup',
+		selectType: 'multiple',
 		label: 'Check this here',
 		description: 'To reveal something secret...'
 	}, {

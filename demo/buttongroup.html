@@ -1,0 +1,54 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>Formly for Angular</title>
+
+		<!-- build:css css/style.css -->
+		<link rel="stylesheet" type="text/css" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
+
+		<!-- endbuild -->
+	</head>
+	<body ng-app="app">
+		<div ng-controller="appController">
+			<formly-form 
+                    name="myFormName"
+                    result="formData"
+                    fields="formFields"
+                    options="formOptions"
+                    ng-submit="onSubmit()">
+                <button type="submit" class="btn btn-primary">Submit it!</button>
+            </formly-form>
+
+            <br>
+
+            <div>
+            	{{formData}}
+            </div>
+		</div>
+
+		<script src="bower_components/angular/angular.js"></script>
+		<script src="bower_components/angular-highlightjs/angular-highlightjs.min.js"></script>
+		<script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
+		<script src="bower_components/highlightjs/highlight.pack.js"></script>
+
+
+		<script src="bower_components/angular-formly/dist/formly.bootstrap.js"></script>
+		<script src="bower_components/angular-strap/dist/angular-strap.js"></script>
+		<script src="bower_components/angular-strap/dist/angular-strap.tpl.js"></script>
+
+		<script src="app.js"></script>
+		<script src="data/buttongroup.js"></script>
+    <script>
+      	app.controller('appController', function ($scope, buttongroupField, buttongroupData) {
+      		$scope.formData = buttongroupData;
+            $scope.onSubmit = function () {
+                console.log("on submitting......");
+            }
+            $scope.formOptions = {
+                uniqueFormId: 'formly'
+            }
+      		$scope.formFields = buttongroupField;
+      	});
+    </script>
+	</body>
+</html>
