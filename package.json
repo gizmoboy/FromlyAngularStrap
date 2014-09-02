@@ -1,0 +1,18 @@
+{
+  "name": "formly-angular-strap",
+  "version": "0.0.1",
+  "author": "",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/benliu723/FromlyAngularStrap"
+  },
+  "description": "This is an demo by using AngularFormly with AngularStrap, which uses andvantages from both of them.",
+  "devDependencies": {
+    "bower": "1.2.7",
+    "connect-livereload": "~0.4.0",
+    "grunt-contrib-connect": "~0.6.0",
+    "grunt-contrib-watch": "~0.6.1",
+    "load-grunt-tasks": "^0.6.0",
+    "time-grunt": "^0.4.0"
+  }
+}
