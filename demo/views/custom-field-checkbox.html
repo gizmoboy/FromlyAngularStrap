@@ -6,26 +6,28 @@
 	</label>
 	<div class="btn-group" 
 		ng-model="$parent.result[$parent.options.key || $parent.index]" 
+		ng-if="!!options.options || !!options.options.length"
 		bs-checkbox-group>
+		<label  class="btn btn-default"
+				ng-repeat="(key, option) in options.options">
+			<input  type="checkbox" 
+					formly-dynamic-name="options.key"
+	                formly-custom-validation="options.validators"
+	                aria-describedby="{{id}}_description"
 
-		<div ng-if="!!options.options || !!options.options.length">
-			<label  class="btn btn-default"
-					ng-repeat="(key, option) in options.options">
-				<input  type="checkbox" 
-						formly-dynamic-name="options.key"
-		                formly-custom-validation="options.validators"
-		                aria-describedby="{{id}}_description"
+	                id="{{id + '_'+ $index}}"
 
-		                id="{{id + '_'+ $index}}"
-
-						ng-required="options.required"
-					    ng-disabled="options.disabled"
-					    ng-value="option.value" > 
-				{{option.name}}	
-			</label>
-			<p id="{{id}}_description" class="help-block" ng-if="options.description">{{options.description}}</p>
-		</div>	
-		<div ng-if="!options.options || !options.options.length">	
+					ng-required="options.required"
+				    ng-disabled="options.disabled"
+				    ng-value="option.value" > 
+			{{option.name}}	
+		</label>
+		<p id="{{id}}_description" class="help-block" ng-if="options.description">{{options.description}}</p>
+	</div>
+	<div class="btn-group" 
+		ng-model="$parent.result[$parent.options.key || $parent.index]" 
+		ng-if="!options.options || !options.options.length"
+		bs-checkbox-group>
 			<label  class="btn btn-default">
 				<input  type="checkbox" 
 						class="btn btn-default"
