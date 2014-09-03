@@ -4,18 +4,19 @@
 		{{options.required ? '*' : ''}}
 	</label>
 
-	<div>
-		$parent.result[options.key]: {{$parent.result[options.key]}}
-	</div>
+	<button type="button" 
+			class="btn btn-default" 
 
-	<select class="form-control"
-			id="{{id}}"
-			aria-describedby="{{id}}_description"
+			data-html="1"
+			ng-model="result[options.key || index]"
 			ng-required="options.required"
-			ng-disabled="options.disabled"
-			
-			ng-model="$parent.result[options.key]"
-			ng-options="option.name as option.name group by option.group for option in options.options">
-	</select>
-   <p id="{{id}}_description" class="help-block" ng-if="options.description">{{options.description}}</p>
+			ng-disabled="options.disabled" 
+			ng-options="option.value as option.name group by option.group for option in options.options" 
+
+			bs-select>
+	</button>
+
 </div>
+
+
+

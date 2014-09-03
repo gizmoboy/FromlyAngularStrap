@@ -1,6 +1,6 @@
 'use strict';
 // Angular Init
-var app = angular.module('app', ['ng', 'ui.router', 'hljs', 'formly', 'mgcrea.ngStrap']);
+var app = angular.module('app', ['ng', 'ui.router', 'hljs', 'formly', 'mgcrea.ngStrap', 'ngSanitize']);
 
 app.constant('usingCustomTypeTemplates', window.localStorage.getItem('useCustomTypeTemplates') === 'true');
 
