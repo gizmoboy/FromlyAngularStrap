@@ -31,7 +31,7 @@ app.config(function($stateProvider, $urlRouterProvider, $locationProvider, $prov
 		templateUrl: 'views/home.html',
 		controller: 'home'
 	});
-	
+
 	if (usingCustomTypeTemplates) {
 		formlyConfigProvider.setTemplateUrl('text', 'views/custom-field-text.html');
 		// or
@@ -170,21 +170,25 @@ app.directive('bsCheckbox', function($button, $$rAF) {
 			var hasExoticValues = typeof trueValue !== 'boolean' || typeof falseValue !== 'boolean';
 			if(hasExoticValues) {
 				controller.$parsers.push(function(viewValue) {
+					var modelValue, index;
 					if (angular.isArray(controller.$modelValue)) {
-						var modelValue = controller.$modelValue.concat([]);
-						var index = modelValue.indexOf(trueValue);
-						if (viewValue) {
-							if (index === -1) {
-								modelValue.push(trueValue);
-							}
-						} else {
-							if (index > -1) modelValue.splice(index, 1);
-						}
-						return modelValue;
+						modelValue = controller.$modelValue.concat([]);	
 					} else {
-						// console.warn('$parser', element.attr('ng-model'), 'viewValue', viewValue);
-						return viewValue ? trueValue : falseValue;	
+						modelValue = [];
+						if (angular.isDefined(controller.$modelValue)) console.error("ButtonGroup error:", "The gaven value isn't an Array.");	
 					}
+					
+					index = modelValue.indexOf(trueValue);
+					if (viewValue) {
+						if (index === -1) {
+							modelValue.push(trueValue);
+						}
+					} else {
+						if (index > -1) modelValue.splice(index, 1);
+					}
+					return modelValue;
+					// console.warn('$parser', element.attr('ng-model'), 'viewValue', viewValue);
+					//return viewValue ? trueValue : falseValue;
 				});
 				// Fix rendering for exotic values
 				scope.$watch(attr.ngModel, function(newValue, oldValue) {
@@ -196,10 +200,18 @@ app.directive('bsCheckbox', function($button, $$rAF) {
 			controller.$render = function () {
 				// console.warn('$render', element.attr('ng-model'), 'controller.$modelValue', typeof controller.$modelValue, controller.$modelValue, 'controller.$viewValue', typeof controller.$viewValue, controller.$viewValue);
 				var isActive;
-				if (angular.isArray(controller.$modelValue)) {
-					isActive = controller.$modelValue.indexOf(trueValue) > -1;
+				if (hasExoticValues) {
+					if (angular.isDefined(controller.$modelValue)) {
+						if (angular.isArray(controller.$modelValue)) {
+							isActive = controller.$modelValue.indexOf(trueValue) > -1;
+						} else {
+							isActive = false;
+							console.error("ButtonGroup error:", "The gaven value isn't an Array.");
+							//isActive = angular.equals(controller.$modelValue, trueValue);
+						}	
+					}
 				} else {
-					isActive = angular.equals(controller.$modelValue, trueValue);
+					isActive = angular.equals(controller.$modelValue, trueValue);	
 				}
 				//var isActive = angular.equals(controller.$modelValue, trueValue);
 				$$rAF(function() {
@@ -211,7 +223,6 @@ app.directive('bsCheckbox', function($button, $$rAF) {
 			// view -> model
 			element.bind(options.toggleEvent, function() {
 				scope.$apply(function () {
-
 					// console.warn('!click', element.attr('ng-model'), 'controller.$viewValue', typeof controller.$viewValue, controller.$viewValue, 'controller.$modelValue', typeof controller.$modelValue, controller.$modelValue);
 					if(!isInput) {
 						controller.$setViewValue(!activeElement.hasClass('active'));
@@ -221,9 +232,6 @@ app.directive('bsCheckbox', function($button, $$rAF) {
 					}
 				});
 			});
-
 		}
-
     };
-
 })

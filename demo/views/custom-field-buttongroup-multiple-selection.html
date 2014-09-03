@@ -1,0 +1,52 @@
+<div class="form-group"
+	ng-class="{'has-error': options.formField.$invalid}">
+	<label  class="control-label" 
+			ng-model="options.options"
+			ng-if="!!options.options || !!options.options.length" >
+		{{options.label}}
+		{{options.required ? '*' : ''}}
+	</label>
+	<!-- begin: mutiple selection -->
+	<div class="btn-group" 
+		ng-model="$parent.result[$parent.options.key || $parent.index]" 
+		ng-if="!!options.options || !!options.options.length"
+		bs-checkbox-group>
+		<label  class="btn btn-default"
+				ng-repeat="(key, option) in options.options">
+			<input  type="checkbox" 
+					formly-dynamic-name="options.key"
+	                formly-custom-validation="options.validators"
+	                aria-describedby="{{id}}_description"
+
+	                id="{{id + '_'+ $index}}"
+
+					ng-required="options.required"
+				    ng-disabled="options.disabled"
+				    ng-value="option.value" > 
+			{{option.name}}	
+		</label>
+		<p id="{{id}}_description" class="help-block" ng-if="options.description">{{options.description}}</p>
+	</div>
+	<!-- end: mutiple selection -->
+	<!-- begin: singleToggle in button group -->
+	<div class="btn-group" 
+		ng-model="$parent.result[$parent.options.key || $parent.index]" 
+		ng-if="!options.options || !options.options.length"
+		bs-checkbox-group>
+			<label  class="btn btn-default">
+				<input  type="checkbox" 
+						class="btn btn-default"
+						formly-dynamic-name="options.key"
+		                formly-custom-validation="options.validators"
+		                aria-describedby="{{id}}_description"
+
+						ng-required="options.required"
+					    ng-disabled="options.disabled"
+					    > 
+				{{options.key}}	
+			</label>
+			<p id="{{id}}_description" class="help-block" ng-if="options.description">{{options.description}}</p>
+		</div>	
+	</div>
+	<!-- end: singleToggle in button group -->
+</div>
