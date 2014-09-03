@@ -31,13 +31,14 @@ app.config(function($stateProvider, $urlRouterProvider, $locationProvider, $prov
 		templateUrl: 'views/home.html',
 		controller: 'home'
 	});
-
+	
 	if (usingCustomTypeTemplates) {
 		formlyConfigProvider.setTemplateUrl('text', 'views/custom-field-text.html');
 		// or
 		formlyConfigProvider.setTemplateUrl({
 			radio: 'views/custom-field-radio.html',
-			checkbox: 'views/custom-field-checkbox.html'
+			checkbox: 'views/custom-field-checkbox.html',
+			select: 'views/custom-field-select.html'
 		});
 	}
 

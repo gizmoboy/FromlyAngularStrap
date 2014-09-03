@@ -1,0 +1,21 @@
+<div class="form-group">
+	<label for="{{id}}">
+		{{options.label || 'Select'}}
+		{{options.required ? '*' : ''}}
+	</label>
+
+	<div>
+		$parent.result[options.key]: {{$parent.result[options.key]}}
+	</div>
+
+	<select class="form-control"
+			id="{{id}}"
+			aria-describedby="{{id}}_description"
+			ng-required="options.required"
+			ng-disabled="options.disabled"
+			
+			ng-model="$parent.result[options.key]"
+			ng-options="option.name as option.name group by option.group for option in options.options">
+	</select>
+   <p id="{{id}}_description" class="help-block" ng-if="options.description">{{options.description}}</p>
+</div>
