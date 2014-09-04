@@ -1,5 +1,5 @@
 <div class="form-group">
-	<label for="{{id}}">
+	<label for="{{id}}" field-helper>
 		{{options.label || 'Select'}}
 		{{options.required ? '*' : ''}}
 	</label>
@@ -8,6 +8,7 @@
 			class="btn btn-default" 
 
 			data-html="1"
+			data-template="views/select.tpl.html"
 			ng-model="result[options.key || index]"
 			ng-required="options.required"
 			ng-disabled="options.disabled" 
@@ -15,7 +16,6 @@
 
 			bs-select>
 	</button>
-
 </div>
 
 
