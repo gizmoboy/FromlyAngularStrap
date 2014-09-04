@@ -70,12 +70,14 @@ app.controller('home', function($scope, $parse, $window, usingCustomTypeTemplate
 		key: 'firstName',
 		type: 'text',
 		label: 'First Name',
-		placeholder: 'Jane'
+		placeholder: 'Jane',
+		fieldHelp: { title: 'help title goes here', content: 'I am a little teapot...'}
 	}, {
 		key: 'lastName',
 		type: 'text',
 		label: 'Last Name',
-		placeholder: 'Doe'
+		placeholder: 'Doe',
+		fieldHelp: { content: 'I am a BIG teapot...', placement: "right"}
 	}, {
 		key: 'emailRequired',
 		type: 'checkbox',
