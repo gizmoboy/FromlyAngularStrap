@@ -266,14 +266,14 @@ app.provider('$parseOptions', function () {
 
 
 /*
- *	Directive for field helper: fieldHelper
+ *	Directive for field helper: fieldHelp
  *  which is presented with a question mark in a circle,
  *  hover the question mark will show an "AngularStrap popover" with helper content
  *  blue will hide that "popover"
  */
-app.directive('fieldHelper', function () {
+app.directive('fieldHelp', function () {
 	return {
 		restrict: 'AE',
-		templateUrl: 'views/field-helper.html'
+		templateUrl: 'views/field-help.html'
 	}
 });

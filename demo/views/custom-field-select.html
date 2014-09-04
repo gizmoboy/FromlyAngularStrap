@@ -2,12 +2,28 @@
 	<label for="{{id}}">
 		{{options.label || 'Select'}}
 		{{options.required ? '*' : ''}}
-		<span ng-if="!!options.fieldHelp"><field-helper></field-helper></span>
+		<span ng-if="!!options.fieldHelp"><field-help></field-help></span>
 	</label>
 
 	<button type="button" 
 			class="btn btn-default" 
 
+			ng-if="!!options.multiple"
+			data-html="1"
+			data-template="views/select.tpl.html"
+			multiple
+			ng-model="result[options.key || index]"
+			ng-required="options.required"
+			ng-disabled="options.disabled" 
+			ng-options="option.value as option.name group by option.group for option in options.options" 
+
+			bs-select>
+	</button>
+
+	<button type="button" 
+			class="btn btn-default" 
+
+			ng-if="!options.multiple"
 			data-html="1"
 			data-template="views/select.tpl.html"
 			ng-model="result[options.key || index]"

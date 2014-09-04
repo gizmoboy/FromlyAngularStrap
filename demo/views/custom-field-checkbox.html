@@ -8,6 +8,6 @@
 		{{options.label || 'Checkbox'}}
 		{{options.required ? '*' : ''}}
 	</label>
-	<span ng-if="!!options.fieldHelp"><field-helper></field-helper></span>
-   <p id="{{id}}_description" class="help-block" ng-if="options.description">{{options.description}}</p>
+	<span ng-if="!!options.fieldHelp"><field-help></field-help></span>
+    <p id="{{id}}_description" class="help-block" ng-if="options.description">{{options.description}}</p>
 </div>

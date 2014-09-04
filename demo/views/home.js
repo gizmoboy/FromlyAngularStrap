@@ -150,6 +150,7 @@ app.controller('home', function($scope, $parse, $window, usingCustomTypeTemplate
 		key: 'transportation',
 		type: 'select',
 		label: 'How do you get around in the city',
+		multiple: true,
 		options: [
 			{
 				name: 'Car',
@@ -257,7 +258,7 @@ app.controller('home', function($scope, $parse, $window, usingCustomTypeTemplate
 	$scope.submittedData = null;
 	$scope.formData = {
 		triedEmber: 'no',
-		transportation: 'hot-air-balloon',
+		transportation: ['hot-air-balloon', 'bus'],
 		angularFan: 'yes',
 		love: 2,
 		secretCode: 'secret_code'
