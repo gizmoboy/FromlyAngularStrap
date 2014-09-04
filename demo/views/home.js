@@ -78,6 +78,14 @@ app.controller('home', function($scope, $parse, $window, usingCustomTypeTemplate
 		label: 'Last Name',
 		placeholder: 'Doe'
 	}, {
+		key: 'birthDate',
+		type: 'date',
+		label: 'When were you born?'
+	}, {
+		key: 'favoriteTime',
+		type: 'time',
+		label: 'What is your favorite time of day?'
+	}, {
 		key: 'emailRequired',
 		type: 'checkbox',
 		label: 'Email required',
