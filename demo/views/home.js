@@ -70,7 +70,8 @@ app.controller('home', function($scope, $parse, $window, usingCustomTypeTemplate
 		key: 'firstName',
 		type: 'text',
 		label: 'First Name',
-		placeholder: 'Jane'
+		placeholder: 'Natt',
+		fieldHelp: {content: "I'm a little teapot...", title: "Hola!", placement: "top"}
 	}, {
 		key: 'lastName',
 		type: 'text',
