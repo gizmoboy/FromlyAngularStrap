@@ -7,6 +7,7 @@ app.directive('customField', function($timeout) {
 					'<label for="{{id}}">',
 						'{{options.label || "Text"}}',
 						'{{options.required ? "*" : ""}}',
+						'<span field-helper></span>'
 					'</label>',
 					'<div class="help-block" ng-show="options.formField.$error.notYes">Really? (enter "yes")</div>',
 					'<div style="position:relative">',

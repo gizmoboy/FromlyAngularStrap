@@ -2,6 +2,7 @@
 	<label class="control-label">
 		{{options.label}}
 		{{options.required ? '*' : ''}}
+		<span field-helper></span>
 	</label>
 	<div class="radio"
 		 ng-repeat="(key, option) in options.options">

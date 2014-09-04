@@ -7,6 +7,19 @@
 }
 
 .footer {
-	text-align: center;
+	text-align: center;	
 	padding: 25px;
+}
+
+.helper {
+	cursor: pointer;
+}
+
+.select-group {
+	padding: 5px 10px;
+	font-weight: bold;
+}
+
+.select-option {
+	padding-left: 20px;
 }

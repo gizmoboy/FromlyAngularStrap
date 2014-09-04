@@ -3,6 +3,7 @@
 	<label class="control-label" field-helper ng-model="options.options">
 		{{options.label}}
 		{{options.required ? '*' : ''}}
+		<span field-helper></span>
 	</label>
 	<div class="btn-group" 
 		ng-model="$parent.result[$parent.options.key || $parent.index]" 
