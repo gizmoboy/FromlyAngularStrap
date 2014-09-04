@@ -158,6 +158,7 @@ app.controller('home', function($scope, $parse, $window, usingCustomTypeTemplate
 		key: 'transportation',
 		type: 'select',
 		label: 'How do you get around in the city',
+		showAllNone: true,
 		multiple: true,
 		options: [
 			{

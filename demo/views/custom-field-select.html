@@ -5,22 +5,38 @@
 		<span ng-if="!!options.fieldHelp"><field-help></field-help></span>
 	</label>
 
-	<button type="button" 
-			class="btn btn-default" 
+    <button type="button"
+            class="btn btn-default"
 
-			ng-if="!!options.multiple"
-			data-html="1"
-			data-template="views/select.tpl.html"
-			multiple
-			ng-model="result[options.key || index]"
-			ng-required="options.required"
-			ng-disabled="options.disabled" 
-			ng-options="option.value as option.name group by option.group for option in options.options" 
+            ng-if="!!options.multiple && !options.showAllNone"
+            data-html="1"
+            data-template="views/select.tpl.html"
+            multiple
+            ng-model="result[options.key || index]"
+            ng-required="options.required"
+            ng-disabled="options.disabled"
+            ng-options="option.value as option.name group by option.group for option in options.options"
 
-			bs-select>
-	</button>
+            bs-select>
+    </button>
 
-	<button type="button" 
+    <button type="button"
+            class="btn btn-default"
+
+            ng-if="!!options.multiple && options.showAllNone"
+            data-html="1"
+            data-template="views/select.tpl.html"
+            multiple
+            all-none-buttons= true
+            ng-model="result[options.key || index]"
+            ng-required="options.required"
+            ng-disabled="options.disabled"
+            ng-options="option.value as option.name group by option.group for option in options.options"
+
+            bs-select>
+    </button>
+
+    <button type="button"
 			class="btn btn-default" 
 
 			ng-if="!options.multiple"
