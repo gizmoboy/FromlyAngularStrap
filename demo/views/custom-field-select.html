@@ -5,16 +5,27 @@
 		<span ng-if="!!options.fieldHelp"><field-help></field-help></span>
 	</label>
 
-	<div>
-		options.multiple: {{options.multiple}}
-	</div>
 	<button type="button" 
 			class="btn btn-default" 
 
+			ng-if="!!options.multiple"
 			data-html="1"
 			data-template="views/select.tpl.html"
-			data-multiple='multiple'
-			data-test='test'
+			data-multiple="{{options.multiple ? true : false}}"
+			ng-model="result[options.key || index]"
+			ng-required="options.required"
+			ng-disabled="options.disabled" 
+			ng-options="option.value as option.name group by option.group for option in options.options" 
+
+			bs-select>
+	</button>
+
+	<button type="button" 
+			class="btn btn-default" 
+
+			ng-if="!options.multiple"
+			data-html="1"
+			data-template="views/select.tpl.html"
 			ng-model="result[options.key || index]"
 			ng-required="options.required"
 			ng-disabled="options.disabled" 
