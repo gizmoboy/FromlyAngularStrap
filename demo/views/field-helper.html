@@ -1,8 +1,9 @@
 <span class="helper" 
-	title="{{options.key}}" 
+	ng-class="{{options.helpText.class}}"
+	title="{{options.helpText.title}}" 
 	data-placement="bottom" 
-	data-content="{{options.label}}" 
-	data-animation="am-flip-x" 
+	data-content="{{options.helpText.content}}" 
+	data-animation="{{options.helpText.animation}}" 
 	bs-popover >
 	<img src="question_mark.png" width="16" height="16">
 </span>

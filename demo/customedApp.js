@@ -273,7 +273,7 @@ app.provider('$parseOptions', function () {
  */
 app.directive('fieldHelper', function () {
 	return {
-		restrict: 'A',
+		restrict: 'AE',
 		templateUrl: 'views/field-helper.html'
 	}
 });

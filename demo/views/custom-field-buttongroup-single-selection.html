@@ -1,9 +1,9 @@
 <div class="form-group"
 	ng-class="{'has-error': options.formField.$invalid}">
-	<label class="control-label" field-helper ng-model="options.options">
+	<label class="control-label" ng-model="options.options">
 		{{options.label}}
 		{{options.required ? '*' : ''}}
-		<span field-helper></span>
+		<span ng-if="!!options.helpText"><field-helper></field-helper></span>
 	</label>
 	<div class="btn-group" 
 		ng-model="$parent.result[$parent.options.key || $parent.index]" 
@@ -21,6 +21,6 @@
 				    >
 		    {{option.name}}
 		</label>
-		<p id="{{id}}_description" class="help-block" ng-if="option.description">{{option.description}}</p>
+		<p id="{{id}}_description" class="<span ng-if="!!options.helpText"><field-helper></field-helper></span>-block" ng-if="option.description">{{option.description}}</p>
 	</div>
 </div>

@@ -5,7 +5,7 @@
 			ng-if="!!options.options || !!options.options.length" >
 		{{options.label}}
 		{{options.required ? '*' : ''}}
-		<span field-helper></span>
+		<span ng-if="!!options.helpText"><field-helper></field-helper></span>
 	</label>
 	<!-- begin: mutiple selection -->
 	<div class="btn-group" 

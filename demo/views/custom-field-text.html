@@ -3,7 +3,8 @@
 	<label for="{{id}}">
 		{{options.label || 'Text'}}
 		{{options.required ? '*' : ''}}
-		<span field-helper></span>
+
+		<span ng-if="!!options.helpText"><field-helper></field-helper></span>>
 	</label>
 	<input type="text"
 		   class="form-control"
