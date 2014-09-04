@@ -3,7 +3,7 @@
 	<label for="{{id}}">
 		{{result[options.nameKey] ? result[options.nameKey] + ',' : ''}} {{options.label || 'Text'}}
 		{{options.required ? '*' : ''}}
-		<span ng-if="!!options.helpText"><field-helper></field-helper></span>
+		<span ng-if="!!options.fieldHelp"><field-help></field-help></span>
 	</label>
 	<div>{{result[options.key || index]}}</div>
     <div class="help-block" ng-show="options.formField.$error.notYes">Why not? (type "yes")</div>
