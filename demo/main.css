@@ -11,15 +11,37 @@
 	padding: 25px;
 }
 
+
+/* custom style */
 .helper {
 	cursor: pointer;
 }
 
-.select-group {
-	padding: 5px 10px;
+.select-control {
+	width: 100%;
 	font-weight: bold;
+	position: relative;
 }
 
-.select-option {
+.select-control .select-group {
+	padding: 5px 10px;	
+}
+
+.select-control .select-option {
 	padding-left: 20px;
+	cursor: pointer;
+}
+
+.select-control .select {
+	width: 100%;
+}
+
+.select-control .btn {
+	width: 100%; 
+	text-align: left;
+}
+
+.select-control .caret {
+	float: right;
+	margin-top: 7px;
 }

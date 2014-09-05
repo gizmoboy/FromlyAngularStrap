@@ -1,12 +1,12 @@
-<div class="form-group">
+<div class="form-group select-control">
 	<label for="{{id}}">
 		{{options.label || 'Select'}}
 		{{options.required ? '*' : ''}}
 		<span ng-if="!!options.fieldHelp"><field-help></field-help></span>
 	</label>
-
+	<br>
 	<button type="button" 
-			class="btn btn-default" 
+			class="btn btn-default btn-select" 
 
 			ng-if="!!options.multiple"
 			data-html="1"
@@ -21,7 +21,7 @@
 	</button>
 
 	<button type="button" 
-			class="btn btn-default" 
+			class="btn btn-default btn-select" 
 
 			ng-if="!options.multiple"
 			data-html="1"
