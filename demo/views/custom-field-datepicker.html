@@ -1,0 +1,109 @@
+<div class="form-group" 
+	ng-class="{'has-error': options.formField.$invalid}" >
+    <label class="control-label" for="{{id}}">
+    	<i class="fa fa-calendar"></i> 
+    	{{options.label || 'Text'}}
+		{{options.required ? '*' : ''}} 
+
+    	<span ng-if="!!options.fieldHelp"><field-help></field-help></span>
+    </label>
+
+    <input  type="text" 
+    		class="form-control" 
+    		id="{{id}}"
+    		placeholder="{{options.placeholder}}"
+
+    		data.animation="{{!!options.animation ? options.animation : 'am-fade'}}"
+    		data-placement="{{!!options.placement ? options.placement : 'bottom-left'}}"
+    		data-trigger="{{!!options.trigger ? options.trigger : false }}"
+    		data-html="{{!!options.html}}"
+    		data-delay="{{options.delay}}"
+    		data-container="{{options.container}}"
+    		date-template="{{!!options.template ? options.template : '$typeahead'}}"
+    		data-date-format="{{!!options.dateFormat ? options.dateFormat : 'shortDate'}}"
+    		data-autoclose="{{options.autoclose}}"
+    		data-use-native="{{options.useNative}}"
+    		data-min-date="{{options.minDate}}"
+    		data-max-date="{{options.maxDate}}"
+    		data-start-view="{{options.startView ? options.startView : 0}}"
+    		data-min-view="{{options.minView ? options.minView : 0}}"
+    		data-start-week="{{options.startWeek}}"
+    		data-start-date="{{options.startDate}}"
+    		data-icon-left="{{options.iconLeft}}"
+    		data-icon-right="{{options.iconRight}}"
+
+
+    		ng-required="options.required"
+		    ng-disabled="options.disabled"
+		    ng-model="result[options.key || index]"
+            ng-if="!options.range"
+
+    		bs-datepicker >
+
+    <div ng-if="!!options.range">
+        <div class="form-group">
+        <input  type="text" 
+            class="form-control" 
+            id="{{id}}"
+            placeholder="{{options.placeholder}}"
+
+            data.animation="{{!!options.animation ? options.animation : 'am-fade'}}"
+            data-placement="{{!!options.placement ? options.placement : 'bottom-left'}}"
+            data-trigger="{{!!options.trigger ? options.trigger : false }}"
+            data-html="{{!!options.html}}"
+            data-delay="{{options.delay}}"
+            data-container="{{options.container}}"
+            date-template="{{!!options.template ? options.template : '$typeahead'}}"
+            data-date-format="{{!!options.dateFormat ? options.dateFormat : 'shortDate'}}"
+            data-autoclose="{{options.autoclose}}"
+            data-use-native="{{options.useNative}}"
+            data-min-date="{{options.minDate}}"
+            data-max-date="{{result[options.key || index].to ? result[options.key || index].to : options.maxDate}}"
+            data-start-view="{{options.startView ? options.startView : 0}}"
+            data-min-view="{{options.minView ? options.minView : 0}}"
+            data-start-week="{{options.startWeek}}"
+            data-start-date="{{options.startDate}}"
+            data-icon-left="{{options.iconLeft}}"
+            data-icon-right="{{options.iconRight}}"
+
+
+            ng-required="options.required"
+            ng-disabled="options.disabled"
+            ng-model="result[options.key || index].from"
+
+            bs-datepicker >
+        </div>
+        <div class="form-group">
+            <input  type="text" 
+                class="form-control" 
+                id="{{id}}"
+                placeholder="{{options.placeholder}}"
+
+                data.animation="{{!!options.animation ? options.animation : 'am-fade'}}"
+                data-placement="{{!!options.placement ? options.placement : 'bottom-left'}}"
+                data-trigger="{{!!options.trigger ? options.trigger : false }}"
+                data-html="{{!!options.html}}"
+                data-delay="{{options.delay}}"
+                data-container="{{options.container}}"
+                date-template="{{!!options.template ? options.template : '$typeahead'}}"
+                data-date-format="{{!!options.dateFormat ? options.dateFormat : 'shortDate'}}"
+                data-autoclose="{{options.autoclose}}"
+                data-use-native="{{options.useNative}}"
+                data-min-date="{{result[options.key || index].from ? result[options.key || index].from : options.maxDate}}"
+                data-max-date="{{options.maxDate}}"
+                data-start-view="{{options.startView ? options.startView : 0}}"
+                data-min-view="{{options.minView ? options.minView : 0}}"
+                data-start-week="{{options.startWeek}}"
+                data-start-date="{{options.startDate}}"
+                data-icon-left="{{options.iconLeft}}"
+                data-icon-right="{{options.iconRight}}"
+
+
+                ng-required="options.required"
+                ng-disabled="options.disabled"
+                ng-model="result[options.key || index].to"
+
+                bs-datepicker >
+        </div>
+    </div>
+</div>

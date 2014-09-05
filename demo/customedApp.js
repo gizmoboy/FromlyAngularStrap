@@ -25,6 +25,8 @@ app.config(function($provide, formlyConfigProvider) {
 	});
 	
 	formlyConfigProvider.setTemplateUrl({
+		datepicker: "views/custom-field-datepicker.html",
+		timepicker: "views/custom-field-timepicker.html",
 		buttongroup: 'views/custom-field-buttongroup.html' 
 	})
 });
