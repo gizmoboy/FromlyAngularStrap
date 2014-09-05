@@ -8,15 +8,53 @@
 	<button type="button" 
 			class="btn btn-default btn-select" 
 
-			ng-if="!!options.multiple"
-			data-html="1"
-			data-template="views/select.tpl.html"
-			multiple
+			ng-if="!!options.multiple && !options.allNoneButtons"
+
+			data.animation="{{!!options.animation ? options.animation : 'am-fade'}}"
+            data-placement="{{!!options.placement ? options.placement : 'bottom-left'}}"
+            data-trigger="{{!!options.trigger ? options.trigger : false }}"
+            data-html="{{!!options.html}}"
+            data-delay="{{options.delay}}"
+            data-container="{{options.container}}"
+            date-template="{{!!options.template ? options.template : 'views/select.tpl.html'}}"
+            data-max-length="{{!!options.maxLength ? options.maxLength : 3}}"
+            data-max-length-html="{{!!options.maxLengthHtml ? options.maxLengthHtml : 'selected'}}"
+      		data-placeholder="{{!!options.placeholder ? options.placeholder : 'Choose among the following...'}}"
+      		data-iconCheckmark="!!options.iconCheckmark ? options.iconCheckmark : 'glyphicon glyphicon-ok'"
+
 			ng-model="result[options.key || index]"
 			ng-required="options.required"
 			ng-disabled="options.disabled" 
 			ng-options="option.value as option.name group by option.group for option in options.options" 
 
+			multiple
+			bs-select>
+	</button>
+
+	<button type="button" 
+			class="btn btn-default btn-select" 
+
+			ng-if="!!options.multiple && !!options.allNoneButtons"
+
+			data.animation="{{!!options.animation ? options.animation : 'am-fade'}}"
+            data-placement="{{!!options.placement ? options.placement : 'bottom-left'}}"
+            data-trigger="{{!!options.trigger ? options.trigger : false }}"
+            data-html="{{!!options.html}}"
+            data-delay="{{options.delay}}"
+            data-container="{{options.container}}"
+            date-template="{{!!options.template ? options.template : 'views/select.tpl.html'}}"
+            data-all-none-buttons="{{options.allNoneButtons}}"
+            data-max-length="{{!!options.maxLength ? options.maxLength : 3}}"
+            data-max-length-html="{{!!options.maxLengthHtml ? options.maxLengthHtml : 'selected'}}"
+      		data-placeholder="{{!!options.placeholder ? options.placeholder : 'Choose among the following...'}}"
+      		data-iconCheckmark="!!options.iconCheckmark ? options.iconCheckmark : 'glyphicon glyphicon-ok'"
+
+			ng-model="result[options.key || index]"
+			ng-required="options.required"
+			ng-disabled="options.disabled" 
+			ng-options="option.value as option.name group by option.group for option in options.options" 
+
+			multiple
 			bs-select>
 	</button>
 
@@ -24,6 +62,7 @@
 			class="btn btn-default btn-select" 
 
 			ng-if="!options.multiple"
+
 			data-html="1"
 			data-template="views/select.tpl.html"
 			ng-model="result[options.key || index]"

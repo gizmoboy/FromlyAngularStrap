@@ -39,80 +39,20 @@
 
     <script src="app.js"></script>
     <script src="customedApp.js"></script>
+    <script src="data/select.js"></script>
 
     <script>
         window.localStorage.setItem('useCustomTypeTemplates', true)
 
-        app.controller('appController', function ($scope) {
-          $scope.formData = {
-            "transportation": ["hot-air-balloon", "bus"]
-          };
+        app.controller('appController', function ($scope, selectData, selectField) {
+          $scope.formData = selectData;
             $scope.onSubmit = function () {
                 console.log("on submitting......");
             }
             $scope.formOptions = {
                 uniqueFormId: 'formly'
             }
-            $scope.formFields = [
-              {
-                  "key": "transportation",
-                  "type": "select",
-                  "multiple": true,
-                  "label": "How do you get around in the city",
-                  "options": [
-                      {
-                          "name": "Car",
-                          "value": "car",
-                          "group": "inefficiently"
-                      },
-                      {
-                          "name": "Helicopter",
-                          "value": "helicopter",
-                          "group": "inefficiently"
-                      },
-                      {
-                          "name": "Sport Utility Vehicle",
-                          "value": "sport-utility-vehicle",
-                          "group": "inefficiently"
-                      },
-                      {
-                          "name": "Bicycle",
-                          "value": "bicycle",
-                          "group": "efficiently"
-                      },
-                      {
-                          "name": "Skateboard",
-                          "value": "skateboard",
-                          "group": "efficiently"
-                      },
-                      {
-                          "name": "Walk",
-                          "value": "walk",
-                          "group": "efficiently"
-                      },
-                      {
-                          "name": "Bus",
-                          "value": "bus",
-                          "group": "efficiently"
-                      },
-                      {
-                          "name": "Scooter",
-                          "value": "scooter",
-                          "group": "efficiently"
-                      },
-                      {
-                          "name": "Train",
-                          "value": "train",
-                          "group": "efficiently"
-                      },
-                      {
-                          "name": "Hot Air Balloon",
-                          "value": "hot-air-balloon",
-                          "group": "efficiently"
-                      }
-                  ]
-              }
-          ];
+            $scope.formFields = selectField;
         });
     </script>
   </body>
