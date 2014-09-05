@@ -70,12 +70,21 @@ app.controller('home', function($scope, $parse, $window, usingCustomTypeTemplate
 		key: 'firstName',
 		type: 'text',
 		label: 'First Name',
-		placeholder: 'Jane'
+		placeholder: 'Natt',
+		fieldHelp: {content: "I'm a little teapot...", title: "Hola!", placement: "top"}
 	}, {
 		key: 'lastName',
 		type: 'text',
 		label: 'Last Name',
 		placeholder: 'Doe'
+	}, {
+		key: 'birthDate',
+		type: 'date',
+		label: 'When were you born?'
+	}, {
+		key: 'favoriteTime',
+		type: 'time',
+		label: 'What is your favorite time of day?'
 	}, {
 		key: 'emailRequired',
 		type: 'checkbox',
@@ -149,6 +158,7 @@ app.controller('home', function($scope, $parse, $window, usingCustomTypeTemplate
 		key: 'transportation',
 		type: 'select',
 		label: 'How do you get around in the city',
+		showAllNone: true,
 		multiple: true,
 		options: [
 			{

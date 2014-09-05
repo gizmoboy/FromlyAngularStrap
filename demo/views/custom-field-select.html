@@ -62,9 +62,19 @@
 			class="btn btn-default btn-select" 
 
 			ng-if="!options.multiple"
+			
+            data.animation="{{!!options.animation ? options.animation : 'am-fade'}}"
+            data-placement="{{!!options.placement ? options.placement : 'bottom-left'}}"
+            data-trigger="{{!!options.trigger ? options.trigger : false }}"
+            data-html="{{!!options.html}}"
+            data-delay="{{options.delay}}"
+            data-container="{{options.container}}"
+            date-template="{{!!options.template ? options.template : 'views/select.tpl.html'}}"
+            data-max-length="{{!!options.maxLength ? options.maxLength : 3}}"
+            data-max-length-html="{{!!options.maxLengthHtml ? options.maxLengthHtml : 'selected'}}"
+            data-placeholder="{{!!options.placeholder ? options.placeholder : 'Choose among the following...'}}"
+            data-iconCheckmark="!!options.iconCheckmark ? options.iconCheckmark : 'glyphicon glyphicon-ok'"
 
-			data-html="1"
-			data-template="views/select.tpl.html"
 			ng-model="result[options.key || index]"
 			ng-required="options.required"
 			ng-disabled="options.disabled" 
