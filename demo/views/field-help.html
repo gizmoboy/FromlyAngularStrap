@@ -1,10 +1,18 @@
 <span class="helper" 
 	ng-class="{{options.fieldHelp.class}}"
+	
+	data-animation="{{!!options.fieldHelp.animation ? options.fieldHelp.animation : 'am-fade'}}"
+	data-placement="{{!!options.fieldHelp.placement ? options.fieldHelp.placement: 'right'}}" 
+	data-trigger="{{!!options.fieldHelp.focus ? options.fieldHelp.focus : 'focus'}}"
 	title="{{options.fieldHelp.title}}" 
-	data-placement="bottom" 
-	data-trigger="focus"
 	data-content="{{options.fieldHelp.content}}" 
-	data-animation="{{options.fieldHelp.animation}}" 
+	data-html="{{!!options.fieldHelp.html}}"
+	data-delay="{{options.fieldHelp.delay}}"
+	data-container="{{options.fieldHelp.container}}"
+	data-target="{{options.fieldHelp.target}}"
+	date-template="{{!!options.fieldHelp.template ? options.fieldHelp.template : 'false'}}"
+	date-contentTemplate="{{!!options.fieldHelp.contentTemplate ? options.fieldHelp.contentTemplate : 'false'}}"
+	 
 	bs-popover >
 	<img src="question_mark.png" width="16" height="16">
 </span>
