@@ -79,11 +79,13 @@ app.controller('home', function($scope, $parse, $window, usingCustomTypeTemplate
 		placeholder: 'Doe'
 	}, {
 		key: 'birthDate',
-		type: 'date',
+		type: 'datepicker',
+		autoClose: true,
+		minDate: '2014-08-17',
 		label: 'When were you born?'
 	}, {
 		key: 'favoriteTime',
-		type: 'time',
+		type: 'timepicker',
 		label: 'What is your favorite time of day?'
 	}, {
 		key: 'emailRequired',
