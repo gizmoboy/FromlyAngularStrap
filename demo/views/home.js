@@ -92,14 +92,14 @@ app.controller('home', function ($scope, $parse, $window, usingCustomTypeTemplat
 		},
 		{
 			key: 'birthDate',
-			type: 'datepicker',
+			type: 'date',
 			autoClose: true,
 			minDate: '2014-08-17',
 			label: 'When were you born?'
 		},
 		{
 			key: 'favoriteTime',
-			type: 'timepicker',
+			type: 'time',
 			label: 'What is your favorite time of day?'
 		},
 		{

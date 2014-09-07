@@ -20,7 +20,7 @@
     		data-delay="{{options.delay}}"
     		data-container="{{options.container}}"
     		data-template="{{!!options.template ? options.template : 'datepicker/datepicker.tpl.html'}}"
-    		data-date-format="{{!!options.dateFormat ? options.dateFormat : 'shortDate'}}"
+    		data-date-format="{{!!options.dateFormat ? options.dateFormat : 'M/d/yy'}}"
     		data-autoclose="{{options.autoClose}}"
     		data-use-native="{{options.useNative}}"
     		data-min-date="{{options.minDate}}"
@@ -29,8 +29,8 @@
     		data-min-view="{{options.minView ? options.minView : 0}}"
     		data-start-week="{{options.startWeek}}"
     		data-start-date="{{options.startDate}}"
-    		data-icon-left="{{options.iconLeft}}"
-    		data-icon-right="{{options.iconRight}}"
+    		data-icon-left="{{options.iconLeft ? options.iconLeft : 'glyphicon glyphicon-chevron-left'}}"
+    		data-icon-right="{{options.iconRight ? options.iconRight : 'glyphicon glyphicon-chevron-right'}}"
 
 
     		ng-required="options.required"
@@ -54,7 +54,7 @@
             data-delay="{{options.delay}}"
             data-container="{{options.container}}"
             data-template="{{!!options.template ? options.template : 'datepicker/datepicker.tpl.html'}}"
-            data-date-format="{{!!options.dateFormat ? options.dateFormat : 'shortDate'}}"
+            data-date-format="{{!!options.dateFormat ? options.dateFormat : 'M/d/yy'}}"
             data-autoclose="{{options.autoClose}}"
             data-use-native="{{options.useNative}}"
             data-min-date="{{options.minDate}}"
@@ -63,8 +63,8 @@
             data-min-view="{{options.minView ? options.minView : 0}}"
             data-start-week="{{options.startWeek}}"
             data-start-date="{{options.startDate}}"
-            data-icon-left="{{options.iconLeft}}"
-            data-icon-right="{{options.iconRight}}"
+            data-icon-left="{{options.iconLeft ? options.iconLeft : 'glyphicon glyphicon-chevron-left'}}"
+            data-icon-right="{{options.iconRight ? options.iconRight : 'glyphicon glyphicon-chevron-right'}}"
 
 
             ng-required="options.required"
@@ -86,7 +86,7 @@
                 data-delay="{{options.delay}}"
                 data-container="{{options.container}}"
                 data-template="{{!!options.template ? options.template : 'datepicker/datepicker.tpl.html'}}"
-                data-date-format="{{!!options.dateFormat ? options.dateFormat : 'shortDate'}}"
+                data-date-format="{{!!options.dateFormat ? options.dateFormat : 'M/d/yy'}}"
                 data-autoclose="{{options.autoClose}}"
                 data-use-native="{{options.useNative}}"
                 data-min-date="{{result[options.key || index].from ? result[options.key || index].from : options.maxDate}}"
@@ -95,8 +95,8 @@
                 data-min-view="{{options.minView ? options.minView : 0}}"
                 data-start-week="{{options.startWeek}}"
                 data-start-date="{{options.startDate}}"
-                data-icon-left="{{options.iconLeft}}"
-                data-icon-right="{{options.iconRight}}"
+                data-icon-left="{{options.iconLeft ? options.iconLeft : 'glyphicon glyphicon-chevron-left'}}"
+                data-icon-right="{{options.iconRight ? options.iconRight : 'glyphicon glyphicon-chevron-right'}}"
 
 
                 ng-required="options.required"

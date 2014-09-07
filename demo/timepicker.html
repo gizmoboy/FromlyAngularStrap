@@ -4,7 +4,10 @@
         <title>Formly for Angular</title>
 
         <!-- build:css css/style.css -->
-        <link rel="stylesheet" type="text/css" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
+        <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+        <link rel="stylesheet" href="//mgcrea.github.io/angular-strap/styles/angular-motion.min.css">
+        <link rel="stylesheet" href="//mgcrea.github.io/angular-strap/styles/bootstrap-additions.min.css">
+        <link rel="stylesheet" href="//mgcrea.github.io/angular-strap/styles/main.min.css">
 
         <!-- endbuild -->
     </head>
@@ -50,9 +53,9 @@
 
         app.controller('appController', function ($scope) {
             $scope.formData = {
-                time: new Date(),
+                /*time: new Date(),*/
                 timeNumber: 36000000,
-                timeDate: new Date()
+                timeDate: "Sun Sep 07 2014 17:07:53 GMT+0800"
             };
             $scope.onSubmit = function () {
                 console.log("on submitting......");
@@ -85,6 +88,7 @@
                     key: 'timeDate',
                     type: 'time',
                     label: 'time label(type:timeDate)',
+                    timeFormat: 'shortTime',
                     placeholder: 'input your date',
                     timeDate: true
                 }
