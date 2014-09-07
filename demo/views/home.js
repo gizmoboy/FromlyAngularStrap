@@ -1,5 +1,5 @@
 'use strict';
-app.controller('home', function($scope, $parse, $window, usingCustomTypeTemplates) {
+app.controller('home', function ($scope, $parse, $window, usingCustomTypeTemplates) {
 
 	// function scope vars
 
@@ -7,7 +7,7 @@ app.controller('home', function($scope, $parse, $window, usingCustomTypeTemplate
 	// storing it here to add it back when the JSON updates the formFields.
 	var seeWhatYouTypeValidators = {
 		name: 'notYes',
-		validate: function(value) {
+		validate: function (value) {
 			return 'yes' === value;
 		},
 		note: 'This note property is actually not part of validators, but I thought you should know that this field\'s validator has a function you can\'t see...'
@@ -20,7 +20,7 @@ app.controller('home', function($scope, $parse, $window, usingCustomTypeTemplate
 		$scope.submittedData = $scope.formData;
 	};
 
-	$scope.toPrettyJSON = function(obj, tabWidth) {
+	$scope.toPrettyJSON = function (obj, tabWidth) {
 		var strippedObj = angular.copy(obj);
 		angular.forEach(strippedObj, function removeFormFieldForPerformancePurposes(field) {
 			delete field.formField;
@@ -28,7 +28,7 @@ app.controller('home', function($scope, $parse, $window, usingCustomTypeTemplate
 		return JSON.stringify(strippedObj, null, Number(tabWidth));
 	};
 
-	$scope.toggleCustomTypeTemplates = function() {
+	$scope.toggleCustomTypeTemplates = function () {
 		if (usingCustomTypeTemplates) {
 			$window.localStorage.removeItem('useCustomTypeTemplates');
 		} else {
@@ -59,6 +59,16 @@ app.controller('home', function($scope, $parse, $window, usingCustomTypeTemplate
 		}
 	});
 
+	$scope.$watch('editJSON', function onDataObjectUpdated(newValue) {
+		try {
+			if (newValue == true) {
+				$scope.formDataStr = $scope.toPrettyJSON($scope.formData, 4);
+			}
+		} catch (e) {
+			$scope.formDataError = true;
+		}
+	});
+
 	// Public Vars
 	if (usingCustomTypeTemplates) {
 		$scope.typeTemplatesButton = 'Use Built-in Type Templates';
@@ -66,173 +76,206 @@ app.controller('home', function($scope, $parse, $window, usingCustomTypeTemplate
 		$scope.typeTemplatesButton = 'Use Custom Type Templates';
 	}
 
-	$scope.formFields = [{
-		key: 'firstName',
-		type: 'text',
-		label: 'First Name',
-		placeholder: 'Natt',
-		fieldHelp: {content: "I'm a little teapot...", title: "Hola!", placement: "top"}
-	}, {
-		key: 'lastName',
-		type: 'text',
-		label: 'Last Name',
-		placeholder: 'Doe'
-	}, {
-		key: 'birthDate',
-		type: 'date',
-		label: 'When were you born?'
-	}, {
-		key: 'favoriteTime',
-		type: 'time',
-		label: 'What is your favorite time of day?'
-	}, {
-		key: 'emailRequired',
-		type: 'checkbox',
-		label: 'Email required',
-		description: 'Do you really want us to have your email?'
-	}, {	
-		key: 'email',
-		type: 'email',
-		placeholder: 'janedoe@gmail.com',
-		description: 'We won\'t spam you',
-		requiredExpression: 'emailRequired'
-	}, {
-		key: 'about',
-		type: 'textarea',
-		label: 'Tell me about yourself',
-		placeholder: 'I like puppies',
-		lines: 4
-	}, {
-		key: 'triedEmber',
-		type: 'radio',
-		label: 'Have you tried EmberJs yet?',
-		options: [
-			{
-				name: 'Yes, and I love it!',
-				value: 'yesyes'
-			}, {
-				name: 'Yes, but I\'m not a fan...',
-				value: 'yesno',
-				description: 'Help me!'
-			}, {
-				name: 'Nope',
-				value: 'no'
+	$scope.formFields = [
+		{
+			key: 'firstName',
+			type: 'text',
+			label: 'First Name',
+			placeholder: 'Natt',
+			fieldHelp: {content: "I'm a little teapot...", title: "Hola!", placement: "top"}
+		},
+		{
+			key: 'lastName',
+			type: 'text',
+			label: 'Last Name',
+			placeholder: 'Doe'
+		},
+		{
+			key: 'birthDate',
+			type: 'datepicker',
+			autoClose: true,
+			minDate: '2014-08-17',
+			label: 'When were you born?'
+		},
+		{
+			key: 'favoriteTime',
+			type: 'timepicker',
+			label: 'What is your favorite time of day?'
+		},
+		{
+			key: 'emailRequired',
+			type: 'checkbox',
+			label: 'Email required',
+			description: 'Do you really want us to have your email?'
+		},
+		{
+			key: 'email',
+			type: 'email',
+			placeholder: 'janedoe@gmail.com',
+			description: 'We won\'t spam you',
+			requiredExpression: 'emailRequired'
+		},
+		{
+			key: 'about',
+			type: 'textarea',
+			label: 'Tell me about yourself',
+			placeholder: 'I like puppies',
+			lines: 4
+		},
+		{
+			key: 'triedEmber',
+			type: 'radio',
+			label: 'Have you tried EmberJs yet?',
+			options: [
+				{
+					name: 'Yes, and I love it!',
+					value: 'yesyes'
+				},
+				{
+					name: 'Yes, but I\'m not a fan...',
+					value: 'yesno',
+					description: 'Help me!'
+				},
+				{
+					name: 'Nope',
+					value: 'no'
+				}
+			]
+		},
+		{
+			key: 'angularFan',
+			type: 'text',
+			label: 'Angular Fan?',
+			disabled: true,
+			required: true
+		},
+		{
+			key: 'love',
+			type: 'number',
+			label: 'How much love?',
+			min: 0,
+			max: 100,
+			required: true
+		},
+		{
+			key: 'inlineCustom',
+			type: 'inline-custom',
+			label: 'Example of setTemplate'
+		},
+		{
+			key: 'seeWhatYouType',
+			type: 'customTemplate',
+			templateUrl: 'views/custom-template.html',
+			label: 'do you like seeing what you type?',
+			nameKey: 'firstName',
+			validators: seeWhatYouTypeValidators
+		},
+		{
+			key: 'useDirective',
+			template: '<div custom-field add-smile="true"></div>',
+			type: 'customField',
+			label: 'Do you want the power?',
+			validators: [
+				{
+					name: 'notYes',
+					validate: 'value === "yes"'
+				}
+			]
+		},
+		{
+			key: 'transportation',
+			type: 'select',
+			label: 'How do you get around in the city',
+			showAllNone: true,
+			multiple: true,
+			options: [
+				{
+					name: 'Car',
+					value: 'car',
+					group: 'inefficiently'
+				},
+				{
+					name: 'Helicopter',
+					value: 'helicopter',
+					group: 'inefficiently'
+				},
+				{
+					name: 'Sport Utility Vehicle',
+					value: 'sport-utility-vehicle',
+					group: 'inefficiently'
+				},
+				{
+					name: 'Bicycle',
+					value: 'bicycle',
+					group: 'efficiently'
+				},
+				{
+					name: 'Skateboard',
+					value: 'skateboard',
+					group: 'efficiently'
+				},
+				{
+					name: 'Walk',
+					value: 'walk',
+					group: 'efficiently'
+				},
+				{
+					name: 'Bus',
+					value: 'bus',
+					group: 'efficiently'
+				},
+				{
+					name: 'Scooter',
+					value: 'scooter',
+					group: 'efficiently'
+				},
+				{
+					name: 'Train',
+					value: 'train',
+					group: 'efficiently'
+				},
+				{
+					name: 'Hot Air Balloon',
+					value: 'hot-air-balloon',
+					group: 'efficiently'
+				}
+			]
+		},
+		{
+			key: 'password',
+			type: 'password',
+			label: 'Password'
+		},
+		{
+			key: 'repeatPassword',
+			type: 'password',
+			label: 'Repeat Password',
+			validators: {
+				name: 'noMatch',
+				validate: 'value === result.password'
 			}
-		]
-	}, {
-		key: 'angularFan',
-		type: 'text',
-		label: 'Angular Fan?',
-		disabled: true,
-		required: true
-	}, {
-		key: 'love',
-		type: 'number',
-		label: 'How much love?',
-		min: 0,
-		max: 100,
-		required: true
-	}, {
-		key: 'inlineCustom',
-		type: 'inline-custom',
-		label: 'Example of setTemplate'
-	}, {
-		key: 'seeWhatYouType',
-		type: 'customTemplate',
-		templateUrl: 'views/custom-template.html',
-		label: 'do you like seeing what you type?',
-		nameKey: 'firstName',
-		validators: seeWhatYouTypeValidators
-	}, {
-		key: 'useDirective',
-		template: '<div custom-field add-smile="true"></div>',
-		type: 'customField',
-		label: 'Do you want the power?',
-		validators: [
-			{
-				name: 'notYes',
-				validate: 'value === "yes"'
-			}
-		]
-	}, {
-		key: 'transportation',
-		type: 'select',
-		label: 'How do you get around in the city',
-		showAllNone: true,
-		multiple: true,
-		options: [
-			{
-				name: 'Car',
-				value: 'car',
-				group: 'inefficiently'
-			}, {
-				name: 'Helicopter',
-				value: 'helicopter',
-				group: 'inefficiently'
-			}, {
-				name: 'Sport Utility Vehicle',
-				value: 'sport-utility-vehicle',
-				group: 'inefficiently'
-			}, {
-				name: 'Bicycle',
-				value: 'bicycle',
-				group: 'efficiently'
-			}, {
-				name: 'Skateboard',
-				value: 'skateboard',
-				group: 'efficiently'
-			}, {
-				name: 'Walk',
-				value: 'walk',
-				group: 'efficiently'
-			}, {
-				name: 'Bus',
-				value: 'bus',
-				group: 'efficiently'
-			}, {
-				name: 'Scooter',
-				value: 'scooter',
-				group: 'efficiently'
-			}, {
-				name: 'Train',
-				value: 'train',
-				group: 'efficiently'
-			}, {
-				name: 'Hot Air Balloon',
-				value: 'hot-air-balloon',
-				group: 'efficiently'
-			}
-		]
-	}, {
-		key: 'password',
-		type: 'password',
-		label: 'Password'
-	}, {
-		key: 'repeatPassword',
-		type: 'password',
-		label: 'Repeat Password',
-		validators: {
-			name: 'noMatch',
-			validate: 'value === result.password'
+		},
+		{
+			key: 'checkThis',
+			type: 'checkbox',
+			label: 'Check this here',
+			description: 'To reveal something secret...'
+		},
+		{
+			key: 'hiddenWhenUnchecked',
+			type: 'text',
+			label: 'Conditional input',
+			placeholder: 'This is a big secret! Try typing "joe"',
+			hideExpression: '!checkThis'
+		},
+		{
+			key: 'showWhenJoe',
+			type: 'text',
+			label: 'You typed Joe! You found me!',
+			placeholder: 'hideExpressions are evaluated on the result',
+			hideExpression: 'hiddenWhenUnchecked !== "joe"'
 		}
-	}, {
-		key: 'checkThis',
-		type: 'checkbox',
-		label: 'Check this here',
-		description: 'To reveal something secret...'
-	}, {
-		key: 'hiddenWhenUnchecked',
-		type: 'text',
-		label: 'Conditional input',
-		placeholder: 'This is a big secret! Try typing "joe"',
-		hideExpression: '!checkThis'
-	}, {
-		key: 'showWhenJoe',
-		type: 'text',
-		label: 'You typed Joe! You found me!',
-		placeholder: 'hideExpressions are evaluated on the result',
-		hideExpression: 'hiddenWhenUnchecked !== "joe"'
-	}];
+	];
 
 	$scope.formFields.some(function (field, index) {
 		if (field.key === 'seeWhatYouType') {
@@ -248,10 +291,10 @@ app.controller('home', function($scope, $parse, $window, usingCustomTypeTemplate
 			label: 'This is a special form field',
 			placeholder: 'It has a watch property with an expression function that depends on something outside the result...',
 			watch: {
-				expression: function(field) {
+				expression: function (field) {
 					return !/joe/ig.test($scope.formData.hiddenWhenUnchecked);
 				},
-				listener: function(field, _new) {
+				listener: function (field, _new) {
 					field.hide = _new;
 				}
 			}
