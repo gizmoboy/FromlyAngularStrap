@@ -22,7 +22,12 @@
             <br>
 
             <div>
-                {{formData}}
+                formData: {{formData}}
+            </div>
+
+            <br>
+            <div>
+                formFields: {{formFields}}
             </div>
         </div>
 
@@ -45,9 +50,9 @@
 
         app.controller('appController', function ($scope) {
             $scope.formData = {
-                time: "1970-01-02T18:50:00.000Z",
+                time: new Date(),
                 timeNumber: 36000000,
-                timeDate: "2014-11-25T23:05:37.939Z"
+                timeDate: new Date()
             };
             $scope.onSubmit = function () {
                 console.log("on submitting......");
@@ -58,24 +63,27 @@
             $scope.formFields = [
                 {
                     key: 'time',
-                    type: 'timepicker',
-                    label: 'timepicker label',
+                    type: 'time',
+                    label: 'time label',
+                    timeFormat: 'h:mm a',
+                    minTime: '10:00 AM',
+                    maxTime: '12:30 AM',
                     placeholder: 'input your date'
                 },
                 {
                     key: 'timeNumber',
-                    type: 'timepicker',
-                    label: 'timepicker label(type:number)',
+                    type: 'time',
+                    timeFormat: 'h:mm',
+                    minTime: '10:00',
+                    maxTime: '12:30',
+                    label: 'time label(type:number maxTime-10:00 minTime-13:30)',
                     timeType: 'number',
-                    timeFormat: 'HH:mm',
-                    minTime: "10:00",
-                    maxTime: "13:30",
                     placeholder: 'input your date'
                 },
                 {
                     key: 'timeDate',
-                    type: 'timepicker',
-                    label: 'timepicker label(type:timeDate)',
+                    type: 'time',
+                    label: 'time label(type:timeDate)',
                     placeholder: 'input your date',
                     timeDate: true
                 }

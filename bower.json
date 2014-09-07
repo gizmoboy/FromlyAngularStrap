@@ -1,39 +1,41 @@
 {
-  "name": "formly-angular-strap",
-  "version": "0.0.16",
-  "authors": [
-    ""
-  ],
-  "description": "This is an demo by using AngularFormly with AngularStrap, which uses andvantages from both of them.",
-  "keywords": [
-    "AngularJs",
-    "form",
-    "formly",
-    "json",
-    "html",
-    "AngularStrap"
-  ],
-  "ignore": [
-    "**/.*",
-    "node_modules",
-    "bower_components",
-    "test",
-    "tests"
-  ],
-  "dependencies": {
-    "angular": "~1.2.22",
-    "angular-formly": "~0.0.16"
-  },
-  "devDependencies": {
-    "angular-ui-router": "~0.2.10",
-    "angular-highlightjs": "~0.3.0",
-    "angular-formly": "~0.0.16",
-    "angular-strap": "~2.0.0",
-    "angular-sanitize": "~1.2.16",
-    "angular-animate": "~1.2.16",
-    "highlightjs": "~8.0.0",
-    "bootstrap": "~3.2.0",
-    "chai": "~1.9.1",
-    "mocha": "~1.21.4"
-  }
+    "name": "formly-angular-strap",
+    "version": "0.0.16",
+    "authors": [
+        ""
+    ],
+    "description": "This is an demo by using AngularFormly with AngularStrap, which uses andvantages from both of them.",
+    "keywords": [
+        "AngularJs",
+        "form",
+        "formly",
+        "json",
+        "html",
+        "AngularStrap"
+    ],
+    "ignore": [
+        "**/.*",
+        "node_modules",
+        "bower_components",
+        "test",
+        "tests"
+    ],
+    "dependencies": {
+        "angular": "~1.2.22",
+        "angular-formly": "~0.0.16"
+    },
+    "devDependencies": {
+        "angular-ui-router": "~0.2.10",
+        "angular-highlightjs": "~0.3.0",
+        "angular-formly": "~0.0.16",
+        "angular-strap": "~2.0.0",
+        "angular-sanitize": "~1.2.16",
+        "angular-animate": "~1.2.16",
+        "angular-i18n": "^1.2.21",
+        "angular-motion": "^0.3.3",
+        "highlightjs": "~8.0.0",
+        "bootstrap": "~3.2.0",
+        "chai": "~1.9.1",
+        "mocha": "~1.21.4"
+    }
 }

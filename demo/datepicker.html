@@ -5,7 +5,8 @@
 
 		<!-- build:css css/style.css -->
 		<link rel="stylesheet" type="text/css" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
-
+        <link rel="stylesheet" href="//mgcrea.github.io/angular-strap/styles/angular-motion.min.css">
+    <link rel="stylesheet" href="//mgcrea.github.io/angular-strap/styles/bootstrap-additions.min.css">
 		<!-- endbuild -->
 	</head>
 	<body ng-app="app">
@@ -46,7 +47,7 @@
       	app.controller('appController', function ($scope) {
       		$scope.formData = {
                 date: "2014-09-26T23:32:37.930Z",
-                range: {from: '2014-09-21T23:32:37.930Z', to:'2014-09-30T23:32:37.930Z'}
+                range: {from: new Date(), to:'2014-09-30T23:32:37.930Z'}
             };
             $scope.onSubmit = function () {
                 console.log("on submitting......");
@@ -57,18 +58,19 @@
       		$scope.formFields = [
                 {
                     key: 'date',
-                    type: 'datepicker',
+                    type: 'date',
                     dateFormat: 'yyyy/MM/dd',
+                    autoclose: true,
                     startDate: '2014-09-4T23:32:37.930Z',
-                    label: 'datepicker label',
+                    label: 'date label',
                     placeholder: 'input your date'
                 },
                 {
                     key: 'range',
-                    type: 'datepicker',
+                    type: 'date',
                     dateFormat: 'yyyy/MM/dd',
                     startDate: '2014-09-4T23:32:37.930Z',
-                    label: 'datepicker range',
+                    label: 'date range',
                     placeholder: 'input your date',
                     range: true
                 }
