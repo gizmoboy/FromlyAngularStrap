@@ -1,0 +1,15 @@
+<div class="form-group">
+    <label for="{{id}}">
+        {{options.label || 'Phone'}}
+        {{options.required ? '*' : ''}}
+        <span ng-if="!!options.fieldHelp"><field-help></field-help></span>
+    </label>
+    <input type="text"
+           class="form-control"
+           id="{{id}}"
+           data-ui-mask="(999) 999-9999"
+           maskedplaceholder="{{options.placeholder}}"
+           ng-required="options.required"
+           ng-disabled="options.disabled"
+           ng-model="value" />
+</div>

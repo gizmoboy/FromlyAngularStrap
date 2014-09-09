@@ -1,0 +1,18 @@
+<div class="form-group">
+    <label for="{{id}}">
+        {{options.label || 'Money'}}
+        {{options.required ? '*' : ''}}
+        <span ng-if="!!options.fieldHelp"><field-help></field-help></span>
+    </label>
+    <div class="input-group">
+        <span class="input-group-addon">$</span>
+        <input
+                id="{{id}}"
+                class="form-control"
+                money
+                maskedplaceholder="{{options.placeholder}}"
+                ng-required="options.required"
+                ng-disabled="options.disabled"
+                ng-model="value">
+    </div>
+</div>

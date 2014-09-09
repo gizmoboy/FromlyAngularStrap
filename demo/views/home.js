@@ -82,7 +82,7 @@ app.controller('home', function ($scope, $parse, $window, usingCustomTypeTemplat
 			type: 'text',
 			label: 'First Name',
 			placeholder: 'Natt',
-			fieldHelp: {content: "I'm a little teapot...", title: "Hola!", placement: "top"}
+			fieldHelp: {content: "this is custom field help text...", title: "Hola!", placement: "top"}
 		},
 		{
 			key: 'lastName',
@@ -94,8 +94,9 @@ app.controller('home', function ($scope, $parse, $window, usingCustomTypeTemplat
 			key: 'birthDate',
 			type: 'date',
 			autoClose: true,
-			minDate: '2014-08-17',
-			label: 'When were you born?'
+			minDate: '2013-10-12',
+			label: 'When were you born?',
+			fieldHelp: {content: "This field will not accept dates prior to 10-12-2013.", title: "Note", placement: "top"}
 		},
 		{
 			key: 'favoriteTime',
@@ -105,88 +106,130 @@ app.controller('home', function ($scope, $parse, $window, usingCustomTypeTemplat
 		{
 			key: 'emailRequired',
 			type: 'checkbox',
-			label: 'Email required',
-			description: 'Do you really want us to have your email?'
+			label: 'Email Address is Required (when checked)'
 		},
 		{
 			key: 'email',
 			type: 'email',
 			placeholder: 'janedoe@gmail.com',
-			description: 'We won\'t spam you',
+			description: 'We won\'t spam you... much.',
 			requiredExpression: 'emailRequired'
+		},{
+			type: 'separator',
+			label: 'I am a Separator'
 		},
 		{
 			key: 'about',
 			type: 'textarea',
 			label: 'Tell me about yourself',
 			placeholder: 'I like puppies',
-			lines: 4
+			lines: 4,
+			description: 'This is a multi-line text area.'
 		},
 		{
-			key: 'triedEmber',
-			type: 'radio',
-			label: 'Have you tried EmberJs yet?',
+			key: 'buttonGroupMulti',
+			type: 'buttongroup',
+			selectType: 'multiple',
+			label: 'What fruits do you like?',
 			options: [
 				{
-					name: 'Yes, and I love it!',
-					value: 'yesyes'
+					name: 'Banana',
+					value: 'banana'
 				},
 				{
-					name: 'Yes, but I\'m not a fan...',
-					value: 'yesno',
-					description: 'Help me!'
+					name: 'Apple',
+					value: 'apple'
 				},
 				{
-					name: 'Nope',
-					value: 'no'
+					name: 'Kiwi',
+					value: 'kiwi'
 				}
 			]
 		},
 		{
-			key: 'angularFan',
+			key: 'buttonGroupSingle',
+			type: 'buttongroup',
+			label: 'What is your favorite fruit?',
+			options: [
+				{
+					name: 'Banana',
+					value: 'banana'
+				},
+				{
+					name: 'Apple',
+					value: 'apple'
+				},
+				{
+					name: 'Kiwi',
+					value: 'kiwi'
+				},
+				{
+					name: 'None of the Above',
+					value: 'NotA'
+				}
+			]
+		},
+		{
+			key: 'buttonGroupToggle',
+			type: 'buttongroup',
+			selectType: 'multiple',
+			label: 'Toggle Type',
+			options: [
+				{
+					name: 'Selected',
+					value: true
+				}
+			]
+		},
+		{
+			key: 'simpleRadio',
+			type: 'radio',
+			label: 'Choose one of three options below:',
+			options: [
+				{
+					name: 'First option',
+					value: 'first'
+				},
+				{
+					name: 'Second fiddle',
+					value: 'second'
+				},
+				{
+					name: 'Last resort',
+					value: 'last'
+				}
+			]
+		},
+		{
+			key: 'disabledText',
 			type: 'text',
-			label: 'Angular Fan?',
+			label: 'This text is not enabled',
 			disabled: true,
 			required: true
 		},
 		{
-			key: 'love',
+			key: 'howHigh',
 			type: 'number',
-			label: 'How much love?',
+			label: 'How high?',
 			min: 0,
 			max: 100,
 			required: true
 		},
 		{
-			key: 'inlineCustom',
-			type: 'inline-custom',
-			label: 'Example of setTemplate'
+			key: 'cash',
+			type: 'money',
+			label: 'How much is enough?'
 		},
 		{
-			key: 'seeWhatYouType',
-			type: 'customTemplate',
-			templateUrl: 'views/custom-template.html',
-			label: 'do you like seeing what you type?',
-			nameKey: 'firstName',
-			validators: seeWhatYouTypeValidators
-		},
-		{
-			key: 'useDirective',
-			template: '<div custom-field add-smile="true"></div>',
-			type: 'customField',
-			label: 'Do you want the power?',
-			validators: [
-				{
-					name: 'notYes',
-					validate: 'value === "yes"'
-				}
-			]
+			key: 'phoneNumber',
+			type: 'phone',
+			label: 'For a good time, call'
 		},
 		{
 			key: 'transportation',
 			type: 'select',
 			label: 'How do you get around in the city',
-			showAllNone: true,
+			allNoneButtons: true,
 			multiple: true,
 			options: [
 				{
@@ -255,6 +298,11 @@ app.controller('home', function ($scope, $parse, $window, usingCustomTypeTemplat
 				validate: 'value === result.password'
 			}
 		},
+//		{
+//			key: 'sig',
+//			type: 'signature',
+//			label: 'sign here:'
+//		},
 		{
 			key: 'checkThis',
 			type: 'checkbox',
@@ -309,10 +357,9 @@ app.controller('home', function ($scope, $parse, $window, usingCustomTypeTemplat
 	};
 	$scope.submittedData = null;
 	$scope.formData = {
-		triedEmber: 'no',
 		transportation: ['hot-air-balloon', 'bus'],
-		angularFan: 'yes',
-		love: 2,
+		disabledText: 'I am disabled',
+		howHigh: 2,
 		secretCode: 'secret_code'
 	};
 	$scope.hiddenFormData = {};

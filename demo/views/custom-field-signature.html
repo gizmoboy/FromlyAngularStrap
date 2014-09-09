@@ -1,0 +1,16 @@
+<div class="form-group">
+    <label for="{{id}}">
+        {{options.label || 'Signature'}}
+        {{options.required ? '*' : ''}}
+
+        <span ng-if="!!options.fieldHelp"><field-help></field-help></span>
+    </label>
+
+    <div mr-signature-pad
+         type="mr-signature-pad"
+         class="form-control"
+         id="{{id}}"
+         ng-required="options.required"
+         ng-disabled="options.disabled"
+         ng-model="result[options.key || index]"/>
+</div>
