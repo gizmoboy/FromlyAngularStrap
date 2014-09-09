@@ -10,7 +10,7 @@ var app = angular.module('app', [
 	'ngAnimate'
 ]);
 
-app.constant('usingCustomTypeTemplates', window.localStorage.getItem('useCustomTypeTemplates') === 'true');
+app.constant('usingCustomTypeTemplates', true);
 
 app.config(function($stateProvider, $urlRouterProvider, $locationProvider, formlyConfigProvider, usingCustomTypeTemplates) {
 
