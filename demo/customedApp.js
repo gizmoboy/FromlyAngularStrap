@@ -19,12 +19,19 @@ app.config(function($provide, formlyConfigProvider) {
 		return $delegate;
 	});
 
+	$provide.decorator('bsTimepickerDirective', function ($delegate) {
+		$delegate.shift();
+		return $delegate;
+	})
+
 	$provide.decorator('$parseOptions', function ($delegate) {
 		$delegate.shift();
 		return $delegate;
 	});
 	
 	formlyConfigProvider.setTemplateUrl({
+		date: "views/custom-field-datepicker.html",
+		time: "views/custom-field-timepicker.html",
 		buttongroup: 'views/custom-field-buttongroup.html' 
 	})
 });
@@ -264,16 +271,170 @@ app.provider('$parseOptions', function () {
 	}];
 });
 
+app.directive('bsTimepicker', [
+	'$window',
+	'$parse',
+	'$q',
+	'$locale',
+	'dateFilter',
+	'$timepicker',
+	'$dateParser',
+	'$timeout',
+	function ($window, $parse, $q, $locale, dateFilter, $timepicker, $dateParser, $timeout) {
+		var defaults = $timepicker.defaults;
+		var isNative = /(ip(a|o)d|iphone|android)/gi.test($window.navigator.userAgent);
+		var requestAnimationFrame = $window.requestAnimationFrame || $window.setTimeout;
+		return {
+			restrict: 'EAC',
+			require: 'ngModel',
+			link: function postLink(scope, element, attr, controller) {
+				// Directive options
+				var options = {
+					scope: scope,
+					controller: controller
+				};
+				angular.forEach([
+					'placement',
+					'container',
+					'delay',
+					'trigger',
+					'keyboard',
+					'html',
+					'animation',
+					'template',
+					'autoclose',
+					'timeType',
+					'timeFormat',
+					'modelTimeFormat',
+					'useNative',
+					'hourStep',
+					'minuteStep',
+					'length',
+					'arrowBehavior'
+				], function (key) {
+				if (angular.isDefined(attr[key]))
+					options[key] = attr[key];
+				});
+				// Visibility binding support
+				attr.bsShow && scope.$watch(attr.bsShow, function (newValue, oldValue) {
+					if (!timepicker || !angular.isDefined(newValue))
+						return;
+					if (angular.isString(newValue))
+						newValue = newValue.match(',?(timepicker),?');
+						newValue === true ? timepicker.show() : timepicker.hide();
+				});
+				// Initialize timepicker
+				if (isNative && (options.useNative || defaults.useNative))
+					options.timeFormat = 'HH:mm';
+				var timepicker = $timepicker(element, controller, options);
+				options = timepicker.$options;
+				// Initialize parser
+				var dateParser = $dateParser({
+					format: options.timeFormat,
+					lang: options.lang
+				});
+				// Observe attributes for changes
+				angular.forEach([
+					'minTime',
+					'maxTime'
+				], function (key) {
+					// console.warn('attr.$observe(%s)', key, attr[key]);
+					angular.isDefined(attr[key]) && attr.$observe(key, function (newValue) {
+						console.log(key, ':', newValue);
+						// if newValue is exit, which is not a empty string, then parse newValue
+						if (!!newValue) {
+							if (newValue === 'now') {
+								timepicker.$options[key] = new Date().setFullYear(1970, 0, 1);
+							} else if (angular.isString(newValue) && newValue.match(/^".+"$/)) {
+								console.log('test')
+								timepicker.$options[key] = +new Date(newValue.substr(1, newValue.length - 2));
+							} else {
+								timepicker.$options[key] = dateParser.parse(newValue, new Date(1970, 0, 1, 0));
+							}
+						}
+						console.log('timepicker.$options.', key, timepicker.$options[key]);
+						!isNaN(timepicker.$options[key]) && timepicker.$build();
+					});
+				});
+				// Watch model for changes
+				scope.$watch(attr.ngModel, function (newValue, oldValue) {
+					// console.warn('scope.$watch(%s)', attr.ngModel, newValue, oldValue, controller.$dateValue);
+					timepicker.update(controller.$dateValue);
+				}, true);
+				// viewValue -> $parsers -> modelValue
+				controller.$parsers.unshift(function (viewValue) {
+					// console.warn('$parser("%s"): viewValue=%o', element.attr('ng-model'), viewValue);
+					// Null values should correctly reset the model value & validity
+					if (!viewValue) {
+					controller.$setValidity('date', true);
+					return;
+					}
+					var parsedTime = dateParser.parse(viewValue, controller.$dateValue);
+					if (!parsedTime || isNaN(parsedTime.getTime())) {
+						controller.$setValidity('date', false);
+					} else {
+						var isValid = parsedTime.getTime() >= options.minTime && parsedTime.getTime() <= options.maxTime;
+						controller.$setValidity('date', isValid);
+						// Only update the model when we have a valid date
+						if (isValid)
+						  controller.$dateValue = parsedTime;
+					}
+					if (options.timeType === 'string') {
+						return dateFilter(parsedTime, options.modelTimeFormat || options.timeFormat);
+					} else if (options.timeType === 'number') {
+						return controller.$dateValue.getTime();
+					} else if (options.timeType === 'iso') {
+						return controller.$dateValue.toISOString();
+					} else {
+						return new Date(controller.$dateValue);
+					}
+				});
+				// modelValue -> $formatters -> viewValue
+				controller.$formatters.push(function (modelValue) {
+					// console.warn('$formatter("%s"): modelValue=%o (%o)', element.attr('ng-model'), modelValue, typeof modelValue);
+					var date;
+					if (angular.isUndefined(modelValue) || modelValue === null) {
+						date = NaN;
+					} else if (angular.isDate(modelValue)) {
+						date = modelValue;
+					} else if (options.timeType === 'string') {
+						date = dateParser.parse(modelValue, null, options.modelTimeFormat);
+					} else {
+						date = new Date(modelValue);
+					}
+					// Setup default value?
+					// if(isNaN(date.getTime())) date = new Date(new Date().setMinutes(0) + 36e5);
+					controller.$dateValue = date;
+					return controller.$dateValue;
+				});
+				// viewValue -> element
+				controller.$render = function () {
+					// console.warn('$render("%s"): viewValue=%o', element.attr('ng-model'), controller.$viewValue);
+					element.val(!controller.$dateValue || isNaN(controller.$dateValue.getTime()) ? '' : dateFilter(controller.$dateValue, options.timeFormat));
+				};
+				// Garbage collection
+				scope.$on('$destroy', function () {
+					timepicker.destroy();
+					options = null;
+					timepicker = null;
+				});
+			}
+		};
+	}
+]);
 
 /*
- *	Directive for field helper: fieldHelper
+ *	Directive for field helper: fieldHelp
  *  which is presented with a question mark in a circle,
  *  hover the question mark will show an "AngularStrap popover" with helper content
  *  blue will hide that "popover"
  */
-app.directive('fieldHelper', function () {
+app.directive('fieldHelp', function () {
 	return {
 		restrict: 'AE',
-		templateUrl: 'views/field-helper.html'
+		templateUrl: 'views/field-help.html'
 	}
 });
+
+
+

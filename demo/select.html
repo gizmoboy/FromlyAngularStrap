@@ -1,0 +1,59 @@
+<!DOCTYPE HTML>
+<html>
+  <head>
+    <title>Formly for Angular</title>
+
+    <!-- build:css css/style.css -->
+    <link rel="stylesheet" type="text/css" href="main.css">
+    <link rel="stylesheet" type="text/css" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
+
+    <!-- endbuild -->
+  </head>
+  <body ng-app="app">
+    <div ng-controller="appController">
+      <formly-form 
+              name="myFormName"
+              result="formData"
+              fields="formFields"
+              options="formOptions"
+              ng-submit="onSubmit()">
+          <button type="submit" class="btn btn-primary">Submit it!</button>
+      </formly-form>
+
+      <br>
+      <div><b>formFields: </b>{{formFields}}</div>
+      <br>
+      <div><b>formData: </b><span class="text-danger">{{formData}}</span></div>
+    </div>
+
+    <script src="bower_components/angular/angular.js"></script>
+    <script src="bower_components/angular-highlightjs/angular-highlightjs.min.js"></script>
+    <script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
+    <script src="bower_components/highlightjs/highlight.pack.js"></script>
+    <script src="bower_components/angular-sanitize/angular-sanitize.js"></script> 
+    <script src="bower_components/angular-animate/angular-animate.js"></script>
+
+    <script src="bower_components/angular-formly/dist/formly.bootstrap.js"></script>
+    <script src="bower_components/angular-strap/dist/angular-strap.js"></script>
+    <script src="bower_components/angular-strap/dist/angular-strap.tpl.js"></script>
+
+    <script src="app.js"></script>
+    <script src="customedApp.js"></script>
+    <script src="data/select.js"></script>
+
+    <script>
+        window.localStorage.setItem('useCustomTypeTemplates', true)
+
+        app.controller('appController', function ($scope, selectData, selectField) {
+          $scope.formData = selectData;
+            $scope.onSubmit = function () {
+                console.log("on submitting......");
+            }
+            $scope.formOptions = {
+                uniqueFormId: 'formly'
+            }
+            $scope.formFields = selectField;
+        });
+    </script>
+  </body>
+</html>

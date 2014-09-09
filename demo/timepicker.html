@@ -1,0 +1,99 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <title>Formly for Angular</title>
+
+        <!-- build:css css/style.css -->
+        <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+        <link rel="stylesheet" href="//mgcrea.github.io/angular-strap/styles/angular-motion.min.css">
+        <link rel="stylesheet" href="//mgcrea.github.io/angular-strap/styles/bootstrap-additions.min.css">
+        <link rel="stylesheet" href="//mgcrea.github.io/angular-strap/styles/main.min.css">
+
+        <!-- endbuild -->
+    </head>
+    <body ng-app="app">
+        <div ng-controller="appController">
+            <formly-form 
+                    name="myFormName"
+                    result="formData"
+                    fields="formFields"
+                    options="formOptions"
+                    ng-submit="onSubmit()">
+                <button type="submit" class="btn btn-primary">Submit it!</button>
+            </formly-form>
+
+            <br>
+
+            <div>
+                formData: {{formData}}
+            </div>
+
+            <br>
+            <div>
+                formFields: {{formFields}}
+            </div>
+        </div>
+
+        <script src="bower_components/angular/angular.js"></script>
+        <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
+        <script src="bower_components/angular-animate/angular-animate.js"></script>
+        <script src="bower_components/angular-highlightjs/angular-highlightjs.min.js"></script>
+        <script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
+        <script src="bower_components/highlightjs/highlight.pack.js"></script>
+
+
+        <script src="bower_components/angular-formly/dist/formly.bootstrap.js"></script>
+        <script src="bower_components/angular-strap/dist/angular-strap.js"></script>
+        <script src="bower_components/angular-strap/dist/angular-strap.tpl.js"></script>
+
+        <script src="app.js"></script>
+        <script src="customedApp.js"></script>
+    <script>
+        window.localStorage.setItem('useCustomTypeTemplates', true)
+
+        app.controller('appController', function ($scope) {
+            $scope.formData = {
+                /*time: new Date(),*/
+                timeNumber: 36000000,
+                timeDate: "Sun Sep 07 2014 17:07:53 GMT+0800"
+            };
+            $scope.onSubmit = function () {
+                console.log("on submitting......");
+            }
+            $scope.formOptions = {
+                uniqueFormId: 'formly'
+            }
+            $scope.formFields = [
+                {
+                    key: 'time',
+                    type: 'time',
+                    label: 'time label',
+                    timeFormat: 'h:mm a',
+                    minTime: '10:00 AM',
+                    maxTime: '12:30 AM',
+                    autoClose: true,
+                    placeholder: 'input your date'
+                },
+                {
+                    key: 'timeNumber',
+                    type: 'time',
+                    timeFormat: 'h:mm',
+                    minTime: '10:00',
+                    maxTime: '12:30',
+                    label: 'time label(type:number maxTime-10:00 minTime-13:30)',
+                    timeType: 'number',
+                    placeholder: 'input your date'
+                },
+                {
+                    key: 'timeDate',
+                    type: 'time',
+                    label: 'time label(type:timeDate)',
+                    timeFormat: 'shortTime',
+                    placeholder: 'input your date',
+                    timeDate: true
+                }
+            ];
+        });
+    </script>
+    </body>
+</html>

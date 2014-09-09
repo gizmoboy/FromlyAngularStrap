@@ -1,0 +1,108 @@
+<div class="form-group" 
+    ng-class="{'has-error': options.formField.$invalid}" >
+    <label class="control-label" for="{{id}}">
+        <i class="fa fa-calendar"></i> 
+        {{options.label || 'Text'}}
+        {{options.required ? '*' : ''}} 
+
+        <span ng-if="!!options.fieldHelp"><field-help></field-help></span>
+    </label>
+
+    <input  type="text" 
+            class="form-control" 
+            id="{{id}}"
+            placeholder="{{options.placeholder}}"
+
+            data.animation="{{!!options.animation ? options.animation : 'am-fade'}}"
+            data-placement="{{!!options.placement ? options.placement : 'bottom-left'}}"
+            data-trigger="{{!!options.trigger ? options.trigger : 'focus' }}"
+            data-html="{{!!options.html}}"
+            data-delay="{{options.delay}}"
+            data-container="{{options.container}}"
+            data-template="{{options.template ? options.tempalte : 'timepicker/timepicker.tpl.html'}}"
+            data-time-format="{{!!options.timeFormat ? options.timeFormat : 'h:mm a'}}"
+            data-time-type="{{!!options.timeType ? options.timeType : 'date'}}"
+            data-autoclose="{{options.autoClose}}"
+            data-use-native="{{options.useNative}}"
+            data-min-time="{{options.minTime}}"
+            data-max-time="{{options.maxTime}}"
+            data-length="{{options.length ? options.length : 5}}"
+            data-hour-step="{{!!options.hourStep ? options.hourStep : 1}}"
+            data-minute-step="{{!!options.minuteStep ? options.minuteStep : 5}}"
+            data-icon-up="{{options.iconUp ? options.iconUp : 'glyphicon glyphicon-chevron-up'}}"
+            data-icon-down="{{options.iconDown ? options.iconDown : 'glyphicon glyphicon-chevron-down'}}"
+
+
+            ng-required="options.required"
+            ng-disabled="options.disabled"
+            ng-model="result[options.key || index]"
+            ng-if="!options.timeDate"
+
+            bs-timepicker >
+
+    <div ng-if="!!options.timeDate">
+        <div class="form-group">
+            <input  type="text" 
+            class="form-control" 
+            id="{{id}}"
+            placeholder="{{options.placeholder}}"
+
+            data.animation="{{!!options.animation ? options.animation : 'am-fade'}}"
+            data-placement="{{!!options.placement ? options.placement : 'bottom-left'}}"
+            data-trigger="{{!!options.trigger ? options.trigger : 'focus' }}"
+            data-html="{{!!options.html}}"
+            data-delay="{{options.delay}}"
+            data-container="{{options.container}}"
+            data-template="{{options.template ? options.tempalte : 'datepicker/datepicker.tpl.html'}}"
+            data-date-format="{{!!options.dateFormat ? options.dateFormat : 'M/d/yy'}}"
+            data-autoclose="{{options.autoClose}}"
+            data-use-native="{{options.useNative}}"
+            
+            data-start-view="{{options.startView ? options.startView : 0}}"
+            data-min-view="{{options.minView ? options.minView : 0}}"
+            data-start-week="{{options.startWeek}}"
+            data-start-date="{{options.startDate}}"
+            data-icon-left="{{options.iconLeft ? options.iconLeft : 'glyphicon glyphicon-chevron-left'}}"
+            data-icon-right="{{options.iconRight ? options.iconRight : 'glyphicon glyphicon-chevron-right'}}"
+
+
+            ng-required="options.required"
+            ng-disabled="options.disabled"
+            ng-model="result[options.key || index]"
+
+            bs-datepicker >
+
+        </div>
+        <div class="form-group">
+            <input  type="text" 
+            class="form-control" 
+            id="{{id}}"
+            placeholder="{{options.placeholder}}"
+
+            data.animation="{{!!options.animation ? options.animation : 'am-fade'}}"
+            data-placement="{{!!options.placement ? options.placement : 'bottom-left'}}"
+            data-trigger="{{!!options.trigger ? options.trigger : 'focus' }}"
+            data-html="{{!!options.html}}"
+            data-delay="{{options.delay}}"
+            data-container="{{options.container}}"
+            data-template="{{options.template ? options.tempalte : 'timepicker/timepicker.tpl.html'}}"
+            data-time-format="{{!!options.timeFormat ? options.timeFormat : 'h:mm a'}}"
+            data-time-type="{{!!options.timeType ? options.timeType : 'date'}}"
+            data-autoclose="{{options.autoClose}}"
+            data-use-native="{{options.useNative}}"
+            data-min-time="{{options.minTime}}"
+            data-max-time="{{options.maxTime}}"
+            data-length="{{options.length ? options.length : 5}}"
+            data-hour-step="{{!!options.hourStep ? options.hourStep : 1}}"
+            data-minute-step="{{!!options.minuteStep ? options.minuteStep : 5}}"
+            data-icon-up="{{options.iconUp ? options.iconUp : 'glyphicon glyphicon-chevron-up'}}"
+            data-icon-down="{{options.iconDown ? options.iconDown : 'glyphicon glyphicon-chevron-down'}}"
+
+            ng-required="options.required"
+            ng-disabled="options.disabled"
+            ng-model="result[options.key || index]"
+
+            bs-timepicker >    
+        </div>
+    </div>
+</div>
